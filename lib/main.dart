@@ -4,7 +4,15 @@ void main() => runApp(MaterialApp(
   home: ProfileCard(),
 ));
 
-class ProfileCard extends StatelessWidget {
+class ProfileCard extends StatefulWidget {
+  @override
+  _ProfileCardState createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+
+  int experienceLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +23,15 @@ class ProfileCard extends StatelessWidget {
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          setState(() {
+            experienceLevel++;
+          });
+          },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
+        ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0,40.0,30.0,0),
         child: Column(
@@ -22,7 +39,7 @@ class ProfileCard extends StatelessWidget {
           children: <Widget>[
           Center(
             child: CircleAvatar(
-              backgroundImage: AssetImage('assets/ThomasDonnelly.jpg'),
+              backgroundImage: AssetImage('ThomasDonnelly.jpg'),
               radius: 40.0,
               
             ),
@@ -58,7 +75,7 @@ class ProfileCard extends StatelessWidget {
             ),
             SizedBox(height: 10.0,),
             Text(
-              '2',
+              '$experienceLevel',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2.0,
@@ -89,3 +106,4 @@ class ProfileCard extends StatelessWidget {
     );
   }
 }
+
